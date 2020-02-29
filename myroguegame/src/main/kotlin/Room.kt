@@ -1,6 +1,7 @@
 class Room( var size : Dimension) {
 
-    private val doors : ArrayList<Door> = ArrayList<Door>()
+    val doors : ArrayList<Door> = ArrayList<Door>()
+        get() = field
 
     var coordination : Coordination? = null;
 
@@ -14,4 +15,4 @@ class Room( var size : Dimension) {
 
 }
 
-class Door(var locked: Boolean = false)
+class Door(val location : Coordination)

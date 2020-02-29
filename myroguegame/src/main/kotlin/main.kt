@@ -2,8 +2,11 @@ import kotlin.random.Random
 
 
 fun main(args: Array<String>) {
-    val rooms = RoomGenerator(15, 15).generate(Random.nextInt(5, 40))
-    val newRooms = RoomPlacer(rooms, Dimension(100, 100)).build()
+    val size = Dimension(20, 20)
+    val rooms = RoomGenerator(10, 10).generate(Random.nextInt(5, 10))
+    val newRooms = RoomPlacer(rooms, size).build()
+    println("")
+    MazePainter(size).paint(newRooms)
     var roomCounter = 0
     newRooms.forEach {
         if (it.coordination?.x != null) {
