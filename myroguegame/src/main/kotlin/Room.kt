@@ -6,7 +6,11 @@ class Room( var size : Dimension) {
     var coordination : Coordination? = null;
 
     override fun toString(): String {
-        return "${coordination?.x},${coordination?.y}: Width ${size.width}, Length ${size.height} with ${doors.size} doors"
+        val sb = StringBuilder()
+        sb.append("${coordination?.x},${coordination?.y}: Width ${size.width}, Height ${size.height} with ${doors.size} doors: (")
+        doors.forEach{sb.append(it.toString() + ",")}
+        sb.append(")")
+        return sb.toString()
     }
 
     fun addDoor(door : Door) {
@@ -15,4 +19,11 @@ class Room( var size : Dimension) {
 
 }
 
-class Door(val location : Coordination)
+class Door(val location : Coordination) {
+
+    override fun toString() : String {
+        return "Door location ${location}"
+
+
+    }
+}

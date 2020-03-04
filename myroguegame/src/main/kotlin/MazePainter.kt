@@ -3,11 +3,16 @@ class MazePainter(private val mazeSize: Dimension) {
     var grid: Grid = Grid(mazeSize)
 
     fun paint(rooms: List<Room>) {
+        var counter = 0
         for (room in rooms) {
+            if (room.coordination == null){
+                continue
+            }
             val xpos = ((room.coordination?.x) ?: 0)
             val ypos = ((room.coordination?.y) ?: 0)
             for (x in xpos..(xpos + room.size.width)) {
                 for (y in ypos..(ypos + room.size.height)) {
+                    grid.setTile(x,y ,'#')
                     if (x == xpos || y == ypos || x == xpos + room.size.width || y == ypos + room.size.height) {
                         grid.setTile(x, y, '#')
                     } else {
@@ -20,6 +25,7 @@ class MazePainter(private val mazeSize: Dimension) {
             }
         }
         for (x in 0..mazeSize.width) {
+//            print("${x}:")
             for (y in 0..mazeSize.height) {
                 print(grid.getTile(x, y))
             }
