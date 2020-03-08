@@ -45,40 +45,45 @@ public class TestGridClass {
     public void testIsOccupy(){
         grid.occupy(new Coordination(0,0),new Dimension(3,3),'+');
 
-        boolean response = grid.isOccupy(new Coordination(0,0),new Dimension(2,2),'+');
+        boolean response = grid.isAvailable(new Coordination(0,0),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(1,1),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(1,1),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(2,2),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(2,2),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(0,2),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(0,2),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(2,0),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(2,0),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(4,0),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(4,0),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
-        response = grid.isOccupy(new Coordination(0,4),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(0,4),new Dimension(2,2),'+');
         Assert.assertFalse(response);
 
 
-        response = grid.isOccupy(new Coordination(3,0),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(3,0),new Dimension(2,2),'+');
         Assert.assertTrue(response);
 
-        response = grid.isOccupy(new Coordination(0,3),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(0,3),new Dimension(2,2),'+');
         Assert.assertTrue(response);
 
-        response = grid.isOccupy(new Coordination(3,3),new Dimension(2,2),'+');
+        response = grid.isAvailable(new Coordination(3,3),new Dimension(2,2),'+');
         Assert.assertTrue(response);
-
-
 
     }
+
+    @Test
+    public void testIsOccupyWithLargeSize(){
+        boolean response = grid.isAvailable(new Coordination(2,2), new Dimension(10,10),'x');
+        Assert.assertFalse(response);
+    }
+
 
     @Test
     public void testIterator(){

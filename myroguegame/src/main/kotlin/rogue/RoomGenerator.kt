@@ -4,7 +4,7 @@ import kotlin.random.Random
 
 class RoomGenerator(val maxWidth: Int, val maxHeight: Int) {
 
-    private val minWidthAndHeight = 5
+    private val minWidthAndHeight = 4
 
     private val defaultNumOfDoors = 1
 

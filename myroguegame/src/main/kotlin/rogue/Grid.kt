@@ -52,7 +52,7 @@ class Grid<T>(private var size: Dimension, private var defaultVal: T) : Iterator
         return arr[x][y] as T
     }
 
-    fun isOccupy(coords: Coordination, occSize: Dimension, occValue: T): Boolean {
+    fun isAvailable(coords: Coordination, occSize: Dimension, occValue: T): Boolean {
         for (y in coords.y until (coords.y + occSize.height)) {
             for (x in coords.x until (coords.x + occSize.width)) {
                 if (x >= size.width || y >= size.height) {
@@ -65,40 +65,6 @@ class Grid<T>(private var size: Dimension, private var defaultVal: T) : Iterator
         }
         return true
     }
-
-
-    fun availableCoords(occSize: Dimension, occupy: T, margin: Int): List<Coordination> {
-        var coords = ArrayList<Coordination>()
-        for (x0 in 0 until size.width) {
-            for (y0 in 0 until size.height) {
-                var availble = true
-                for (x1 in x0 until (x0 + occSize.width)) {
-                    for (y1 in y0 until (y0 + occSize.height)) {
-                        if (x1 >= size.width - margin || y1 >= size.height - margin
-                                || x1 <= margin || y1 <= margin) {
-                            availble = false
-                            break
-                        }
-                        if (arr[x1][y1] == occupy as T
-                                || arr[x1 + margin][y1] == occupy as T
-                                || (arr[x1][y1 + margin]) == occupy as T
-                                || arr[x1 - margin][y1] == occupy as T
-                                || arr[x1][y1 - margin] == occupy as T) {
-                            availble = false
-                            break
-                        }
-
-
-                    }
-                }
-                if (availble) {
-                    coords.add(Coordination(x0, y0))
-                }
-            }
-        }
-        return coords
-    }
-
 
     fun occupy(coords: Coordination, size: Dimension, value: T) {
         for (x in coords.x..(coords.x + size.width - 1)) {
@@ -120,4 +86,18 @@ class Grid<T>(private var size: Dimension, private var defaultVal: T) : Iterator
     }
 
 
+}
+
+data class Dimension(val width: Int, val height: Int) {
+
+    override fun toString(): String {
+        return "Width ${width}, Height ${height}"
+    }
+}
+
+data class Coordination(val x: Int, val y: Int) {
+
+    override fun toString(): String {
+        return return ("${x},${y}")
+    }
 }
