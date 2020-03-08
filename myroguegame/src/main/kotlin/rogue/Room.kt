@@ -1,4 +1,6 @@
-class Room( var size : Dimension) {
+package rogue
+
+class Room(var size : Dimension) {
 
     val doors : ArrayList<Door> = ArrayList<Door>()
         get() = field
@@ -22,7 +24,7 @@ class Room( var size : Dimension) {
 class Door(val location : Coordination) {
 
     override fun toString() : String {
-        return "Door location ${location}"
+        return "rogue.Door location ${location}"
 
 
     }

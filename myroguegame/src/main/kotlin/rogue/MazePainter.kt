@@ -1,3 +1,5 @@
+package rogue
+
 class MazePainter(private val mazeSize: Dimension) {
 
     var grid: Grid = Grid(mazeSize)
@@ -12,7 +14,6 @@ class MazePainter(private val mazeSize: Dimension) {
             val ypos = ((room.coordination?.y) ?: 0)
             for (x in xpos..(xpos + room.size.width)) {
                 for (y in ypos..(ypos + room.size.height)) {
-                    grid.setTile(x,y ,'#')
                     if (x == xpos || y == ypos || x == xpos + room.size.width || y == ypos + room.size.height) {
                         grid.setTile(x, y, '#')
                     } else {
@@ -25,7 +26,7 @@ class MazePainter(private val mazeSize: Dimension) {
             }
         }
         for (x in 0..mazeSize.width) {
-//            print("${x}:")
+            print("${x}:")
             for (y in 0..mazeSize.height) {
                 print(grid.getTile(x, y))
             }
@@ -40,9 +41,9 @@ class MazePainter(private val mazeSize: Dimension) {
         var grid = arrayOf<Array<Char>>()
 
         init {
-            for (i in 0..gridSize.width) {
+            for (x in 0..gridSize.width) {
                 var array = arrayOf<Char>()
-                for (j in 0..gridSize.height) {
+                for (y in 0..gridSize.height) {
                     array += '.'
                 }
                 this.grid += array
